@@ -10,7 +10,7 @@ public interface UsuarioService {
 
 	UserDetails findByLoginOrEmail(String login);
 
-	Usuario salvar(Usuario entity) throws Exception;
+	Usuario salvar(Usuario entity, Boolean isAluno) throws Exception;
 
 	List<String> getAllLogin();
 

@@ -56,10 +56,12 @@ public class UsuarioServiceImpl implements UsuarioService {
 	}
 
 	@Override
-	public Usuario salvar(Usuario entity) throws Exception {
+	public Usuario salvar(Usuario entity, Boolean isAluno) throws Exception {
 		validarLoginDuplicado(entity);
 		validarEmailDuplicado(entity);
-		validarEmail(entity.getEmail());
+		if (isAluno) {
+			validarEmail(entity.getEmail());
+		}
 		entity.setSenha(passwordEncoder.encode(entity.getPassword()));
 		entity.setConfirmacaoEmail(false);
 		mailSenderService.sendMail(MailFactory.criarEmailSaudacao(entity, tokenService.gerarTokenForMailConfirmation(entity), dominio));
@@ -74,7 +76,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 	}
 
 	private void validarEmailDuplicado(Usuario entity) {
-		Optional<Usuario> usuarioDuplicateOP = this.repository.findEmailDuplicate(entity.getEmail(), entity.getId());
+		Optional<Usuario> usuarioDuplicateOP = this.repository.findEmailDuplicate(entity.getEmail(), entity.getId(), entity.getRole());
 		if (usuarioDuplicateOP.isPresent()) {
 			throw new EmailDuplicateException(entity.getEmail());
 		}

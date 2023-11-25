@@ -29,6 +29,7 @@ public class SecurityConfiguration {
 		                        .requestMatchers(HttpMethod.POST, "/usuario/salvar/*").permitAll()//
 		                        .requestMatchers(HttpMethod.GET, "/curso/listarTodos").permitAll() //
 		                        .requestMatchers(HttpMethod.GET, "/cargo/listarTodos").permitAll() //
+		                        .requestMatchers(HttpMethod.GET, "/setor/listarTodos").permitAll() //
 		                        .requestMatchers(HttpMethod.GET, "/confirmation/confirmar/*").permitAll() //
 		                        .requestMatchers(HttpMethod.POST, "/curso/*").permitAll() //
 		                        .requestMatchers(HttpMethod.POST, "/cargo/*").permitAll() //
