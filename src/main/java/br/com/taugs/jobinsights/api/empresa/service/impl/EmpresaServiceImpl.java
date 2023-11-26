@@ -41,6 +41,9 @@ public class EmpresaServiceImpl implements EmpresaService {
 	public List<EmpresaResponseDTO> findByFilter(EmpresaFilterDTO filter) {
 		filter.setNome(StringUtils.returnForLikeSearch(filter.getNome()));
 		filter.setSetor(StringUtils.returnForLikeSearch(filter.getSetor()));
+		if (StringUtils.isBlank(filter.getOrderBy())) {
+			filter.setOrderBy("nome");
+		}
 		return EmpresaFactory.gerarListaEmpresas(this.repository.findByFilter(filter, SortUtils.getSort("empresa", filter)));
 	}
 

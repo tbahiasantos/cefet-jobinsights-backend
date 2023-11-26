@@ -1,5 +1,6 @@
 package br.com.taugs.jobinsights.api.factory;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -20,12 +21,14 @@ public final class EmpresaFactory {
 		return listMap.stream().map(map -> {
 			EmpresaResponseDTO empresaResponseDTO = mapper.convertValue(map, EmpresaResponseDTO.class);
 			empresaResponseDTO.setTamanhoStr(getDescricaoTamanho(empresaResponseDTO.getTamanho()));
+			if (empresaResponseDTO.getNota() == null)
+				empresaResponseDTO.setNota(BigDecimal.ZERO);
 			return empresaResponseDTO;
 		}).collect(Collectors.toList());
 	}
 
 	private static String getDescricaoTamanho(Integer tamanho) {
-		return TamanhoEmpresaEnum.getDescricao(tamanho);
+		return TamanhoEmpresaEnum.getDescricaoByTamanho(tamanho);
 	}
 
 }

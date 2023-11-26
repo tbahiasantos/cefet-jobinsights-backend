@@ -7,6 +7,7 @@ import lombok.Data;
 @Data
 public class EmpresaResponseDTO {
 
+	private Long id;
 	private String nome;
 	private BigDecimal nota;
 	private Integer avaliacoes;

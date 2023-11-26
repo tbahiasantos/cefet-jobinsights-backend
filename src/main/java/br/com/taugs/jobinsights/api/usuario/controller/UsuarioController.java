@@ -26,7 +26,6 @@ import br.com.taugs.jobinsights.utils.RestMapping;
 @RequestMapping("/usuario")
 public class UsuarioController {
 
-	@Autowired
 	private final UsuarioService service;
 	private final SetorService setorService;
 	private final CargoService cargoService;

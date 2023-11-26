@@ -19,7 +19,7 @@ public enum TamanhoEmpresaEnum {
 		this.tamanho = tamanho;
 	}
 
-	public static String getDescricao(Integer tamanho) {
+	public static String getDescricaoByTamanho(Integer tamanho) {
 		for (TamanhoEmpresaEnum e : values()) {
 			if (e.getTamanho().equals(tamanho)) {
 				return e.getDescricao();
