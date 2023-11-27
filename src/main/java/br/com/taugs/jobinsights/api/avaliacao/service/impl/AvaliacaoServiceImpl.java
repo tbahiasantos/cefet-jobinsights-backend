@@ -1,5 +1,7 @@
 package br.com.taugs.jobinsights.api.avaliacao.service.impl;
 
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,7 @@ public class AvaliacaoServiceImpl implements AvaliacaoService {
 
 	@Override
 	public Avaliacao salvar(Avaliacao entity) {
+		entity.setDataAvaliacao(Timestamp.from(Instant.now()));
 		return this.repository.save(entity);
 	}
 
