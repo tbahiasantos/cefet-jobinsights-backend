@@ -13,6 +13,7 @@ import br.com.taugs.jobinsights.api.salario.model.entity.Salario;
 import br.com.taugs.jobinsights.api.setor.model.entity.Setor;
 import br.com.taugs.jobinsights.api.usuario.model.entity.Usuario;
 import br.com.taugs.jobinsights.api.vaga.model.entity.Vaga;
+import br.com.taugs.jobinsights.enums.TamanhoEmpresaEnum;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -22,6 +23,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -69,5 +71,12 @@ public class Empresa extends Usuario {
 	@Fetch(value = FetchMode.SUBSELECT)
 	@OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
 	private List<Vaga> vagas;
+
+	@Transient
+	private String tamanhoStr;
+
+	public String getTamanhoStr() {
+		return TamanhoEmpresaEnum.getDescricaoByTamanho(this.tamanho);
+	}
 
 }
