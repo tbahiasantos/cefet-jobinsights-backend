@@ -1,6 +1,6 @@
 package br.com.taugs.jobinsights.api.avaliacao.model.dto;
 
-import java.sql.Timestamp;
+import java.time.LocalDate;
 
 import br.com.taugs.jobinsights.api.crud.dto.AbstractFilterDTO;
 import lombok.Builder;
@@ -14,5 +14,8 @@ public class AvaliacaoFilterDTO extends AbstractFilterDTO {
 
 	private Integer nota;
 	private String cargo;
-	private Timestamp dataAvaliacao;
+	private LocalDate dataAvaliacao;
+	private LocalDate dataFim;
+	private Long idEmpresa;
+	private Integer rangeDate;
 }

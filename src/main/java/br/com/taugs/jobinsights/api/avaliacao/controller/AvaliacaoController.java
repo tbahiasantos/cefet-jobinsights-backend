@@ -1,5 +1,7 @@
 package br.com.taugs.jobinsights.api.avaliacao.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.taugs.jobinsights.api.avaliacao.model.dto.AvaliacaoFilterDTO;
 import br.com.taugs.jobinsights.api.avaliacao.model.entity.Avaliacao;
 import br.com.taugs.jobinsights.api.avaliacao.service.AvaliacaoService;
 import br.com.taugs.jobinsights.utils.RestMapping;
@@ -27,6 +30,11 @@ public class AvaliacaoController {
 	@PostMapping(value = RestMapping.SALVAR)
 	public ResponseEntity<Avaliacao> salvar(@RequestBody Avaliacao entity) {
 		return ResponseEntity.ok(this.service.salvar(entity));
+	}
+
+	@PostMapping(value = RestMapping.PESQUISAR)
+	public ResponseEntity<List<Avaliacao>> pesquisar(@RequestBody AvaliacaoFilterDTO filter) {
+		return ResponseEntity.ok(this.service.listarPorFiltro(filter));
 	}
 
 }

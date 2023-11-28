@@ -25,7 +25,9 @@ public interface AvaliacaoRepository extends JpaRepository<Avaliacao, Long> {
 	        + "WHERE 1 = 1 " //
 	        + "AND (UPPER(TRANSLATE(COALESCE(cargo.nome,''),'áãàâäçéèëêùûüúóôöïîíÁÀÂÄÃÇÉÈËÊÙÛÜÚÓÔÖÏÎÍ','aaaaaceeeeuuuuoooiiiAAAAACEEEEUUUUOOOIII')) LIKE :#{#filter.cargo}) " //
 	        + "AND (avaliacao.nota = :#{#filter.nota} OR :#{#filter.nota} IS NULL) " //
-	        + "AND (TO_DATE(TO_CHAR(avaliacao.dataAvaliacao, 'YYYY-MM-DD'), 'dd/mm/yy') = TO_DATE(TO_CHAR(:#{#filter.dataAvaliacao}, 'YYYY-MM-DD'), 'dd/mm/yy') OR :#{#filter.dataAvaliacao} IS NULL) " //
+			// + "AND (TO_DATE(TO_CHAR(avaliacao.dataAvaliacao, 'YYYY-MM-DD'), 'dd/mm/yy') = TO_DATE(TO_CHAR(:#{#filter.dataAvaliacao}, 'YYYY-MM-DD'), 'dd/mm/yy') OR :#{#filter.dataAvaliacao} IS NULL) " //
+	        + "AND (avaliacao.idEmpresa = :#{#filter.idEmpresa}) "//
+	        + "AND (:#{#filter.rangeDate} IS NULL OR avaliacao.dataAvaliacao BETWEEN CURRENT_DATE AND :#{#filter.dataFim}) " //
 	        + "ORDER BY :#{#sort} " //
 	)
 	List<Avaliacao> findByFilter(@Param("filter") AvaliacaoFilterDTO filter, @Param("sort") Sort sort);

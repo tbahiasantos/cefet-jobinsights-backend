@@ -1,7 +1,7 @@
 package br.com.taugs.jobinsights.api.avaliacao.model.entity;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -59,7 +59,7 @@ public class Avaliacao implements Serializable {
 	private String contra;
 
 	@Column(name = "avaliacao_data")
-	private Timestamp dataAvaliacao;
+	private LocalDate dataAvaliacao;
 
 	@JsonBackReference("fk_avaliacao_aluno")
 	@ManyToOne(fetch = FetchType.LAZY)
