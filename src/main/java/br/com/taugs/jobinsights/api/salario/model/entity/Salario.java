@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import br.com.taugs.jobinsights.api.aluno.model.entity.Aluno;
+import br.com.taugs.jobinsights.api.cargo.model.entity.Cargo;
 import br.com.taugs.jobinsights.api.empresa.model.entity.Empresa;
 import br.com.taugs.jobinsights.api.salario.model.pk.SalarioPK;
 import jakarta.persistence.Column;
@@ -45,6 +46,9 @@ public class Salario implements Serializable {
 	@Column(name = "empresa_id")
 	private Long idEmpresa;
 
+	@Column(name = "cargo_id")
+	private Long idCargo;
+
 	@Column(name = "salario_valor")
 	private BigDecimal valor;
 
@@ -57,5 +61,9 @@ public class Salario implements Serializable {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "empresa_id", insertable = false, updatable = false)
 	private Empresa empresa;
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "cargo_id", insertable = false, updatable = false)
+	private Cargo cargo;
 
 }

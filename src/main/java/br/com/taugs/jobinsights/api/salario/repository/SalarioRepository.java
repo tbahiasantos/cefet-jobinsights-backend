@@ -19,10 +19,9 @@ public interface SalarioRepository extends JpaRepository<Salario, Long> {
 	        + "cargo.nome as cargo, " //
 	        + "MAX(salario.valor) as maior, " //
 	        + "MIN(salario.valor) as menor, " //
-	        + "COUNT(salario) as total " //
+	        + "COUNT(salario.id) as total " //
 	        + "FROM Salario salario " //
-	        + "JOIN salario.aluno aluno " //
-	        + "JOIN aluno.cargo cargo " //
+	        + "JOIN salario.cargo cargo " //
 	        + "JOIN salario.empresa empresa " //
 	        + "WHERE 1 = 1 " //
 	        + "AND (UPPER(TRANSLATE(COALESCE(cargo.nome,''),'áãàâäçéèëêùûüúóôöïîíÁÀÂÄÃÇÉÈËÊÙÛÜÚÓÔÖÏÎÍ','aaaaaceeeeuuuuoooiiiAAAAACEEEEUUUUOOOIII')) LIKE :#{#filter.cargo}) " //
