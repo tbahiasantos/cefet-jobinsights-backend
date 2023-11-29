@@ -19,6 +19,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -61,6 +62,9 @@ public class Vaga implements Serializable {
 	@Column(name = "vaga_data")
 	private Timestamp dataVaga;
 
+	@Column(name = "vaga_ativa")
+	private Boolean vagaAtiva;
+
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "cargo_id", insertable = false, updatable = false)
 	private Cargo cargo;
@@ -69,5 +73,8 @@ public class Vaga implements Serializable {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "empresa_id", insertable = false, updatable = false)
 	private Empresa empresa;
+
+	@Transient
+	private String nomeEmpresa;
 
 }

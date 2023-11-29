@@ -19,13 +19,13 @@ public final class VagaFactory {
 		final ObjectMapper mapper = new ObjectMapper();
 		return listMap.stream().map(map -> {
 			VagaResponseDTO vagaResponseDTO = mapper.convertValue(map, VagaResponseDTO.class);
-			vagaResponseDTO.setTipoVaga(getTipoVaga(vagaResponseDTO.getTipoVaga()));
+			vagaResponseDTO.setTipoVagaStr(getTipoVaga(vagaResponseDTO.getTipoVaga()));
 			return vagaResponseDTO;
 		}).collect(Collectors.toList());
 	}
 
-	private static String getTipoVaga(String tipoVaga) {
-		return Integer.valueOf(tipoVaga).equals(TipoVagaEnum.VAGA_EMPREGO.getTipoVaga()) ? "Emprego" : "Estágio";
+	private static String getTipoVaga(TipoVagaEnum tipoVaga) {
+		return tipoVaga.equals(TipoVagaEnum.VAGA_EMPREGO) ? "Emprego" : "Estágio";
 	}
 
 }
