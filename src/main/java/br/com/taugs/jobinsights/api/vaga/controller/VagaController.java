@@ -46,6 +46,15 @@ public class VagaController {
 		return ResponseEntity.ok(this.service.salvar(entity));
 	}
 
+	@PostMapping(value = RestMapping.EDITAR)
+	public ResponseEntity<Vaga> editar(@RequestBody Vaga entity) {
+		if (entity.getIdCargo() == -1) {
+			Cargo cargo = this.cargoService.salvar(entity.getCargo());
+			entity.setIdCargo(cargo.getId());
+		}
+		return ResponseEntity.ok(this.service.editar(entity));
+	}
+
 	@PostMapping(value = RestMapping.PESQUISAR)
 	public ResponseEntity<List<VagaResponseDTO>> pesquisar(@RequestBody VagaFilterDTO filter) {
 		return ResponseEntity.ok(this.service.findByFilter(filter));

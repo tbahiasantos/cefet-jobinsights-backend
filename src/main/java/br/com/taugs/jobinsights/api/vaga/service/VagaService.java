@@ -13,4 +13,6 @@ public interface VagaService extends AbstractService<Vaga> {
 
 	Vaga findById(Long id);
 
+	Vaga editar(Vaga entity);
+
 }

@@ -66,4 +66,9 @@ public class VagaServiceImpl implements VagaService {
 		return null;
 	}
 
+	@Override
+	public Vaga editar(Vaga entity) {
+		return this.repository.save(entity);
+	}
+
 }
