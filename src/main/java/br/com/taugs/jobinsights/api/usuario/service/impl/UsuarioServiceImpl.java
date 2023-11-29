@@ -101,6 +101,8 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 	@Override
 	public Usuario editar(Usuario entity) {
+		validarEmailDuplicado(entity);
+		entity.setSenha(passwordEncoder.encode(entity.getPassword()));
 		return this.repository.save(entity);
 	}
 

@@ -68,4 +68,13 @@ public class UsuarioController {
 		return ResponseEntity.ok(service.salvar(entity, false));
 	}
 
+	@PostMapping(value = RestMapping.EDITAR + "/empresa")
+	public ResponseEntity<Usuario> editarEmpresa(@RequestBody Empresa entity) throws Exception {
+		if (entity.getIdSetor() == -1) {
+			Setor setor = this.setorService.salvar(entity.getSetor());
+			entity.setIdSetor(setor.getId());
+		}
+		return ResponseEntity.ok(service.editar(entity));
+	}
+
 }
