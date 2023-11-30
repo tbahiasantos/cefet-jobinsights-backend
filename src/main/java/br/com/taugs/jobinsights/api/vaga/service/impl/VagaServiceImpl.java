@@ -56,6 +56,19 @@ public class VagaServiceImpl implements VagaService {
 	}
 
 	@Override
+	public List<VagaResponseDTO> findByFilterByUser(VagaFilterDTO filter) {
+		if (StringUtils.isBlank(filter.getOrderBy())) {
+			filter.setOrderBy("cargo.nome");
+		}
+		if (filter.getRangeDate() != null) {
+			filter.setDataFim(LocalDate.now().minusDays(filter.getRangeDate()));
+		}
+		filter.setCargo(StringUtils.returnForLikeSearch(filter.getCargo()));
+		filter.setEmpresa(StringUtils.returnForLikeSearch(filter.getEmpresa()));
+		return VagaFactory.gerarListaVagas(this.repository.findByFilterByUser(filter, SortUtils.getSort("vaga", filter)));
+	}
+
+	@Override
 	public Vaga findById(Long id) {
 		Optional<Vaga> vagaOp = this.repository.findById(id);
 		if (vagaOp.isPresent()) {

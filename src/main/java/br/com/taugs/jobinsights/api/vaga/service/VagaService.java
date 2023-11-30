@@ -11,6 +11,8 @@ public interface VagaService extends AbstractService<Vaga> {
 
 	List<VagaResponseDTO> findByFilter(VagaFilterDTO filter);
 
+	List<VagaResponseDTO> findByFilterByUser(VagaFilterDTO filter);
+
 	Vaga findById(Long id);
 
 	Vaga editar(Vaga entity);

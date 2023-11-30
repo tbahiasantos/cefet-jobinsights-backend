@@ -60,6 +60,11 @@ public class VagaController {
 		return ResponseEntity.ok(this.service.findByFilter(filter));
 	}
 
+	@PostMapping(value = RestMapping.PESQUISAR + "/user")
+	public ResponseEntity<List<VagaResponseDTO>> pesquisarByUser(@RequestBody VagaFilterDTO filter) {
+		return ResponseEntity.ok(this.service.findByFilterByUser(filter));
+	}
+
 	@GetMapping(value = RestMapping.DETALHAR)
 	public ResponseEntity<Vaga> pesquisar(@PathVariable("id") Long id) {
 		return ResponseEntity.ok(this.service.findById(id));
